@@ -7,11 +7,13 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math/rand"
 	"os"
 	"os/exec"
 	"regexp"
 	"sort"
 	"strings"
+	"time"
 )
 
 const cmdName = "gotesplit"
@@ -101,6 +103,8 @@ type testList struct {
 }
 
 func getTestLists(out string) []testList {
+	rand.Seed(time.Now().UnixNano())
+
 	var lists []testList
 	var list []string
 	for _, v := range strings.Split(out, "\n") {
@@ -108,12 +112,15 @@ func getTestLists(out string) []testList {
 			list = append(list, v)
 			continue
 		}
+		// pkg単位でokが出現
 		if strings.HasPrefix(v, "ok ") {
 			stuff := strings.Fields(v)
 			if len(stuff) != 3 {
 				continue
 			}
-			sort.Strings(list)
+			rand.Shuffle(len(list), func(i, j int) {
+				list[i], list[j] = list[j], list[i]
+			})
 			lists = append(lists, testList{
 				pkg:  stuff[1],
 				list: list,

@@ -343,7 +343,7 @@ End of functions from https://github.com/client9/shlib
 EOF
 
 PROJECT_NAME="gotesplit"
-OWNER=Songmu
+OWNER=tokubass
 REPO="gotesplit"
 BINARY=gotesplit
 FORMAT=tar.gz
