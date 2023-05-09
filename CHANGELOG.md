@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.2.3](https://github.com/tokubass/gotesplit/compare/4a8f56789b5b...v0.2.3) (2023-05-10)
+
+
 ## [v0.2.2](https://github.com/tokubass/gotesplit/compare/4a8f56789b5b...v0.2.2) (2023-05-10)
 
 
