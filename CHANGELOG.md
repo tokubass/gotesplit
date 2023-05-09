@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.2.2](https://github.com/tokubass/gotesplit/compare/4a8f56789b5b...v0.2.2) (2023-05-10)
+
+
 ## [v0.2.1](https://github.com/Songmu/gotesplit/compare/v0.2.0...v0.2.1) (2022-06-09)
 
 * perf: tags option always placed at testOpts [#21](https://github.com/Songmu/gotesplit/pull/21) ([Warashi](https://github.com/Warashi))
