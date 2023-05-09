@@ -13,7 +13,6 @@ import (
 	"regexp"
 	"sort"
 	"strings"
-	"time"
 )
 
 const cmdName = "gotesplit"
@@ -103,7 +102,6 @@ type testList struct {
 }
 
 func getTestLists(out string) []testList {
-	rand.Seed(time.Now().UnixNano())
 
 	var lists []testList
 	var list []string
@@ -118,6 +116,12 @@ func getTestLists(out string) []testList {
 			if len(stuff) != 3 {
 				continue
 			}
+
+			// CircleCIから複数回コマンド実行される度にlistの並びが変化しないようにseedを固定
+			// fork元実装の分割ロジックはテスト名の辞書順のためCircleCIから渡されるindexを使えば正常に動作したが、
+			// コマンド実行ごとにshuffleするとそれぞれlistの中身が異なるので正常にテスト分割できない。
+			// 処理時間が長いテストはテスト名のprefixが同一であるケースが多いので辞書順は都合が悪かった
+			rand.Seed(1257894000000000000)
 			rand.Shuffle(len(list), func(i, j int) {
 				list[i], list[j] = list[j], list[i]
 			})
